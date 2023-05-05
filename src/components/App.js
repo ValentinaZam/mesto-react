@@ -1,36 +1,58 @@
-import "./index.css"
-import React from "react"
-import headerLogo from "./images/logo/logo_header.svg"
+import "../index.css"
+import React, { useEffect, useState } from "react"
+import Header from "./Header"
+import Footer from "./Footer"
+import Main from "./Main"
+import ImagePopup from "./ImagePopup"
+import PopupWithForm from "./PopupWithForm"
 
 function App() {
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false)
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false)
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false)
+  const handleEditAvatarClick = () => {
+    setIsEditAvatarPopupOpen(true)
+  }
+  function handleEditProfileClick() {
+    setIsEditProfilePopupOpen(true)
+  }
+  function handleAddPlaceClick() {
+    setIsAddPlacePopupOpen(true)
+  }
+  function closeAllPopups() {
+    setIsAddPlacePopupOpen(false)
+    setIsEditProfilePopupOpen(false)
+    setIsEditAvatarPopupOpen(false)
+  }
+
   return (
-    <body className="body">
+    <div className="body">
       <div className="page">
-        <div className="header">
-          <img className="header__logo" src={headerLogo} alt="Логотип Mesto" />
-        </div>
-
-        <main>
-          <section className="profile">
-            <button className="profile__button-photo">
-              <img className="profile__photo" src="#" alt="Фотография Жак Ива Кусто" />
-            </button>
-            <div className="profile__info">
-              <h1 className="profile__name">Жак-Ив Кусто</h1>
-              <button
-                className="profile__button-edit"
-                type="button"
-                aria-label="Корректировать"
-              ></button>
-              <p className="profile__prof">Исследователь океана</p>
-            </div>
-            <button className="profile__button-add" type="button" aria-label="Добавить"></button>
-          </section>
-
-          <section className="elements" aria-label="Главные">
-            <ul className="content"></ul>
-          </section>
-        </main>
+        <Header />
+        <Main
+          onEditAvatar={handleEditAvatarClick}
+          onEditProfile={handleEditProfileClick}
+          onAddPlace={handleAddPlaceClick}
+        />
+        <Footer />
+        <PopupWithForm
+          title={"Редактировать профиль"}
+          name={"profile"}
+          isOpen={isEditProfilePopupOpen}
+          onClose={closeAllPopups}
+        />
+        <PopupWithForm
+          title={"Новое место"}
+          name={"new-mesto"}
+          isOpen={isAddPlacePopupOpen}
+          onClose={closeAllPopups}
+        />
+        <PopupWithForm
+          title={"Обновить аватар"}
+          name={"avatar"}
+          isOpen={isEditAvatarPopupOpen}
+          onClose={closeAllPopups}
+        />
 
         <template className="template">
           <li className="element element_delete">
@@ -50,11 +72,7 @@ function App() {
           </li>
         </template>
 
-        <footer>
-          <p className="footer">&copy; 2020 Mesto Russia</p>
-        </footer>
-
-        <div className="popup popup_profile">
+        {/* <div className="popup popup_profile">
           <div className="popup__container popup__container_profile-edit">
             <button
               className="popup__close popup__close_edit"
@@ -140,20 +158,10 @@ function App() {
               </button>
             </form>
           </div>
-        </div>
-        <div className="popup popup_image">
-          <div className="popup__image">
-            <button
-              className="popup__close popup__close-image"
-              type="button"
-              aria-label="Закрыть"
-            ></button>
-            <img className="popup__photo" src="#" alt="" />
-            <p className="popup__text"></p>
-          </div>
-        </div>
+        </div> */}
+        <ImagePopup />
 
-        <div className="popup popup_avatar">
+        {/* <div className="popup popup_avatar">
           <div className="popup__container popup__container_avatar">
             <button
               className="popup__close popup__close_avatar"
@@ -184,7 +192,7 @@ function App() {
               </button>
             </form>
           </div>
-        </div>
+        </div> */}
 
         <div className="popup popup_delete-card">
           <div className="popup__container popup__container_delete">
@@ -197,7 +205,7 @@ function App() {
               className="popup__form popup__form_delete"
               name="form-delete"
               method="get"
-              novalidate
+              // novalidate
             >
               <h2 className="popup__title">Вы уверены?</h2>
               <button className="popup__submit popup__submit_delete" type="submit">
@@ -207,7 +215,7 @@ function App() {
           </div>
         </div>
       </div>
-    </body>
+    </div>
   )
 }
 
