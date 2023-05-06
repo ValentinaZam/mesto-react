@@ -20,12 +20,6 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
       )
       .catch((err) => console.log(`Ошибка ${err}`))
   }, [])
-  // useEffect(() => {
-  //   api.getInitialUser().then((userInfo) => setUserDescription(userInfo.about))
-  // }, [userDescription])
-  // useEffect(() => {
-  //   api.getInitialUser().then((userInfo) => setUserAvatar(userInfo.avatar))
-  // }, [userDescription])
   useEffect(() => {
     api
       .getInitialCards()
