@@ -9,6 +9,8 @@
 
 @media screen and (max-width: 750px) {
   .profile__photo {
+    display: block;
+
     margin: 0 auto;
   }
 }
