@@ -3,23 +3,35 @@ import { api } from "../utils/Api"
 import Card from "./Card"
 
 function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
-  const [userName, setUserName] = useState()
-  const [userDescription, setUserDescription] = useState()
-  const [userAvatar, setUserAvatar] = useState()
+  const [userName, setUserName] = useState("")
+  const [userDescription, setUserDescription] = useState("")
+  const [userAvatar, setUserAvatar] = useState("")
   const [cards, setCards] = useState([])
 
   useEffect(() => {
-    api.getInitialUser().then((userInfo) => setUserName(userInfo.name))
-  }, [userName])
+    api
+      .getInitialUser()
+      .then(
+        (userInfo) => (
+          setUserName(userInfo.name),
+          setUserDescription(userInfo.about),
+          setUserAvatar(userInfo.avatar)
+        )
+      )
+      .catch((err) => console.log(`Ошибка ${err}`))
+  }, [])
+  // useEffect(() => {
+  //   api.getInitialUser().then((userInfo) => setUserDescription(userInfo.about))
+  // }, [userDescription])
+  // useEffect(() => {
+  //   api.getInitialUser().then((userInfo) => setUserAvatar(userInfo.avatar))
+  // }, [userDescription])
   useEffect(() => {
-    api.getInitialUser().then((userInfo) => setUserDescription(userInfo.about))
-  }, [userDescription])
-  useEffect(() => {
-    api.getInitialUser().then((userInfo) => setUserAvatar(userInfo.avatar))
-  }, [userDescription])
-  useEffect(() => {
-    api.getInitialCards().then((cards) => setCards(cards))
-  }, [cards])
+    api
+      .getInitialCards()
+      .then((cards) => setCards(cards))
+      .catch((err) => console.log(`Ошибка ${err}`))
+  }, [])
   return (
     <main>
       <section className="profile">
@@ -47,7 +59,9 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
       <section className="elements" aria-label="Главные">
         <ul className="content">
           {cards.map((card) => (
-            <Card key={card._id} card={card} onCardClick={onCardClick} />
+            <li key={card._id}>
+              <Card card={card} onCardClick={onCardClick} />
+            </li>
           ))}
         </ul>
       </section>

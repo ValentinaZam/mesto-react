@@ -21,7 +21,7 @@ function App() {
     setIsAddPlacePopupOpen(true)
   }
   function handleCardClick(item) {
-    setSelectedCard(item.link)
+    setSelectedCard(item)
   }
   function closeAllPopups() {
     setIsAddPlacePopupOpen(false)

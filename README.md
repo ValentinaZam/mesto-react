@@ -1,70 +1,60 @@
-# Getting Started with Create React App
+# Проект: Место
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## _Описание проекта_
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+Проект разделен на основные блоки:
 
-### `npm start`
+1. **head**
+2. **body**  
+   В свою очередь body разделен на секции:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- _header_
+- _main_
+- _footer_
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Цель проекта
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Закрепление навыков верстки одностраничного сайта на HTML и CSS.
+2. Применение адаптивной вёрстки для основных часто используемых разрешений экранов (широкий экран 1280px, мобильные устройства 320px)
+3. Навык работы с макетом Figma от дизайнера. изучение альтернативных методов применения.
+4. Навык работы с git ветками.
+5. Работа с JavaScript. Опыт работы с элементами DOM и слушателями событий.
+6. Публикация сайта.
+7. Перенос кода на реакт
 
-### `npm run build`
+## Методы и свойства использованные в проекте
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+В проекте применялись различные стили и свойства CSS, которые в последствии разбивались по организационной структуре БЭМ. Применялся JavaScript.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Проект был создан с целью получения практических навыков по созданию сайтов в применением различных техник HTML, CSS, JavaScript.
 
-### `npm run eject`
+В проекте применялись следующие технологии:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- флекс-бокс вёрстка
+- адаптивная верстка
+- свойства grid технологии.
+- свойства шрифтов
+- свойства фона
+- позиционирование элементов в потоке
+- работа с позиционированием картинок, логотипов, текста и т.д.
+- технология работы по БЭМ
+- технологии реакт
+  \*Применена работа с классами и модулями
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Планы проекта
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. В дальнейшем можно использовать на практике блоки проекта как основу или шаблон для будущих разработок.
+2. Проект можно использовать как тренажёр заменяя детали и свойства, эксперементируя и наблюдая изменения визуально.
+3. В дальнейшем проект мною будет использоваться в качестве конструктора для другого сайта с другим наполнением. Чтобы закрепить знания и навыки HTML и CSS, адаптивной вёрстки, навыки JavaScript, элементов реакт
 
-## Learn More
+Ссылка на проект: https://valentinazam.github.io/mesto/
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Автор проекта: Валентина Замараева, студент Яндекс Практикума.
