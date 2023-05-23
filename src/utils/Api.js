@@ -70,6 +70,7 @@ class Api {
       headers: this._headers
     }).then((res) => this._stateResponse(res))
   }
+  
   addLike(cardId) {
     return fetch(this._url + "/cards/" + cardId + "/likes", {
       method: "PUT",
