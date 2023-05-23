@@ -3,31 +3,24 @@ import { api } from "../utils/Api"
 import Card from "./Card"
 import { CurrentUserContext } from "../contexts/CurrentUserContext"
 
-function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardLike, onCardDelete }) {
-  // const [userName, setUserName] = useState("")
-  // const [userDescription, setUserDescription] = useState("")
-  // const [userAvatar, setUserAvatar] = useState("")
-  const [cards, setCards] = useState([])
+function Main({
+  onEditProfile,
+  onAddPlace,
+  onEditAvatar,
+  onCardClick,
+  onCardLike,
+  onCardDelete,
+  cards
+}) {
+  // const [cards, setCards] = useState([])
   const currentUser = useContext(CurrentUserContext)
 
   // useEffect(() => {
   //   api
-  //     .getInitialUser()
-  //     .then(
-  //       (userInfo) => (
-  //         setUserName(userInfo.name),
-  //         setUserDescription(userInfo.about),
-  //         setUserAvatar(userInfo.avatar)
-  //       )
-  //     )
+  //     .getInitialCards()
+  //     .then((cards) => setCards(cards))
   //     .catch((err) => console.log(`Ошибка ${err}`))
-  // }, [])
-  useEffect(() => {
-    api
-      .getInitialCards()
-      .then((cards) => setCards(cards))
-      .catch((err) => console.log(`Ошибка ${err}`))
-  }, [cards])
+  // }, [cards])
 
   return (
     <main>

@@ -9,6 +9,7 @@ import PopupWithForm from "./PopupWithForm"
 import { CurrentUserContext } from "../contexts/CurrentUserContext"
 import EditProfilePopup from "./EditProfilePopup"
 import EditAvatarPopup from "./EditAvatarPopup"
+import AddPlacePopup from "./AddPlacePopup"
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false)
@@ -18,10 +19,25 @@ function App() {
   const [currentUser, setCurrentUser] = useState({})
   const [cards, setCards] = useState([])
 
+  useEffect(() => {
+    api
+      .getInitialCards()
+      .then((cards) => setCards(cards))
+      .catch((err) => console.log(`Ошибка ${err}`))
+  }, [cards])
+
   function closeAllPopups() {
     const popupAll = [setIsEditProfilePopupOpen, setIsAddPlacePopupOpen, setIsEditAvatarPopupOpen]
     popupAll.forEach((popup) => popup(false))
     setSelectedCard(null)
+  }
+
+  function addNewCard(data) {
+    api
+      .getAddCard(data)
+      .then((newCard) => setCards([newCard, ...cards]))
+      .catch((err) => console.log(`Ошибка ${err}`))
+    closeAllPopups()
   }
 
   function handleUpdateAvatar(link) {
@@ -91,6 +107,7 @@ function App() {
             onCardClick={handleCardClick}
             onCardLike={handleCardLike}
             onCardDelete={handleCardDelete}
+            cards={cards}
           />
           <Footer />
           <EditProfilePopup
@@ -99,39 +116,15 @@ function App() {
             onUpdateUser={handleUpdateUser}
           />
 
-          <PopupWithForm
-            title={"Новое место"}
-            name={"new-mesto"}
-            isOpen={isAddPlacePopupOpen}
-            onClose={closeAllPopups}
-          >
-            <input
-              id="mesto-input"
-              className="popup__input popup__input_type_mesto"
-              type="text"
-              name="name"
-              placeholder="Название"
-              defaultValue=""
-              required
-              minLength="2"
-              maxLength="30"
-            />
-            <span className="popup__input-error mesto-input-error"></span>
-            <input
-              id="link-input"
-              className="popup__input popup__input_type_link"
-              type="url"
-              name="link"
-              placeholder="Ссылка на картинку"
-              defaultValue=""
-              required
-            />
-            <span className="popup__input-error link-input-error"></span>
-          </PopupWithForm>
           <EditAvatarPopup
             isOpen={isEditAvatarPopupOpen}
             onClose={closeAllPopups}
             onUpdateAvatar={handleUpdateAvatar}
+          />
+          <AddPlacePopup
+            isOpen={isAddPlacePopupOpen}
+            onClose={closeAllPopups}
+            onAddPlace={addNewCard}
           />
           <PopupWithForm
             title={"Вы уверены"}
