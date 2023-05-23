@@ -25,7 +25,7 @@ class Api {
     }).then((res) => this._stateResponse(res))
   }
 
-  getEditUser(data) {
+  setUserInfo(data) {
     return fetch(this._url + "/users/me", {
       method: "PATCH",
       headers: this._headers,
@@ -36,7 +36,7 @@ class Api {
     }).then((res) => this._stateResponse(res))
   }
 
-  getEditAvatar(link) {
+  setUserAvatar(link) {
     return fetch(this._url + "/users/me/avatar", {
       method: "PATCH",
       headers: this._headers,
