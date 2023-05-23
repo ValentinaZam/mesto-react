@@ -11,7 +11,7 @@ class Api {
     return Promise.reject(`Ошибка: ${res.status}`)
   }
 
-  getInitialUser() {
+  getUserInfo() {
     return fetch(this._url + "/users/me", {
       method: "GET",
       headers: this._headers
@@ -70,7 +70,15 @@ class Api {
       headers: this._headers
     }).then((res) => this._stateResponse(res))
   }
-  
+
+  changeLikeCardStatus(cardId, isLiked) {
+    if (isLiked) {
+      return this.addLike(cardId)
+    } else {
+      return this.deleteLike(cardId)
+    }
+  }
+
   addLike(cardId) {
     return fetch(this._url + "/cards/" + cardId + "/likes", {
       method: "PUT",

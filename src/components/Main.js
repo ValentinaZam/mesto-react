@@ -3,10 +3,10 @@ import { api } from "../utils/Api"
 import Card from "./Card"
 import { CurrentUserContext } from "../contexts/CurrentUserContext"
 
-function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
-  const [userName, setUserName] = useState("")
-  const [userDescription, setUserDescription] = useState("")
-  const [userAvatar, setUserAvatar] = useState("")
+function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardLike, onCardDelete }) {
+  // const [userName, setUserName] = useState("")
+  // const [userDescription, setUserDescription] = useState("")
+  // const [userAvatar, setUserAvatar] = useState("")
   const [cards, setCards] = useState([])
   const currentUser = useContext(CurrentUserContext)
 
@@ -27,7 +27,8 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
       .getInitialCards()
       .then((cards) => setCards(cards))
       .catch((err) => console.log(`Ошибка ${err}`))
-  }, [])
+  }, [cards])
+
   return (
     <main>
       <section className="profile">
@@ -56,7 +57,12 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
         <ul className="content">
           {cards.map((card) => (
             <li key={card._id}>
-              <Card card={card} onCardClick={onCardClick} />
+              <Card
+                card={card}
+                onCardClick={onCardClick}
+                onCardLike={onCardLike}
+                onCardDelete={onCardDelete}
+              />
             </li>
           ))}
         </ul>

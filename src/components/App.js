@@ -1,11 +1,12 @@
 import "../index.css"
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
+import { api } from "../utils/Api"
 import Header from "./Header"
 import Footer from "./Footer"
 import Main from "./Main"
 import ImagePopup from "./ImagePopup"
 import PopupWithForm from "./PopupWithForm"
-import CurrentUserContext from "../contexts/CurrentUserContext"
+import { CurrentUserContext } from "../contexts/CurrentUserContext"
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false)
@@ -13,13 +14,33 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false)
   const [selectedCard, setSelectedCard] = useState(null)
   const [currentUser, setCurrentUser] = useState({})
+  const [cards, setCards] = useState([])
 
   useEffect(() => {
     api
-      .getInitialUser()
+      .getUserInfo()
       .then((userInfo) => setCurrentUser(userInfo))
       .catch((err) => console.log(`Ошибка ${err}`))
   }, [])
+
+  function handleCardLike(card) {
+    const isLiked = card.likes.some((i) => i._id === currentUser._id)
+    api
+      .changeLikeCardStatus(card._id, !isLiked)
+      .then((newCard) => {
+        setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)))
+      })
+      .catch((err) => console.log(`Ошибка ${err}`))
+  }
+
+  function handleCardDelete(id) {
+    api
+      .deleteCards(id)
+      .then(() => {
+        setCards((state) => state.filter((card) => card._id !== id))
+      })
+      .catch((err) => console.log(`Ошибка ${err}`))
+  }
 
   const handleEditAvatarClick = () => {
     setIsEditAvatarPopupOpen(true)
@@ -50,6 +71,8 @@ function App() {
             onEditProfile={handleEditProfileClick}
             onAddPlace={handleAddPlaceClick}
             onCardClick={handleCardClick}
+            onCardLike={handleCardLike}
+            onCardDelete={handleCardDelete}
           />
           <Footer />
           <PopupWithForm
