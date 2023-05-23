@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useContext } from "react"
-import { api } from "../utils/Api"
 import Card from "./Card"
 import { CurrentUserContext } from "../contexts/CurrentUserContext"
 
@@ -12,15 +11,7 @@ function Main({
   onCardDelete,
   cards
 }) {
-  // const [cards, setCards] = useState([])
   const currentUser = useContext(CurrentUserContext)
-
-  // useEffect(() => {
-  //   api
-  //     .getInitialCards()
-  //     .then((cards) => setCards(cards))
-  //     .catch((err) => console.log(`Ошибка ${err}`))
-  // }, [cards])
 
   return (
     <main>
