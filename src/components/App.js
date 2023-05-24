@@ -24,36 +24,46 @@ function App() {
       .getInitialCards()
       .then((cards) => setCards(cards))
       .catch((err) => console.log(`Ошибка ${err}`))
-  }, [cards])
+  }, [])
 
   function closeAllPopups() {
-    const popupAll = [setIsEditProfilePopupOpen, setIsAddPlacePopupOpen, setIsEditAvatarPopupOpen]
-    popupAll.forEach((popup) => popup(false))
+    const allPopupStates = [
+      setIsEditProfilePopupOpen,
+      setIsAddPlacePopupOpen,
+      setIsEditAvatarPopupOpen
+    ]
+    allPopupStates.forEach((state) => state(false))
     setSelectedCard(null)
   }
 
   function addNewCard(data) {
     api
       .getAddCard(data)
-      .then((newCard) => setCards([newCard, ...cards]))
+      .then((newCard) => {
+        setCards([newCard, ...cards])
+        closeAllPopups()
+      })
       .catch((err) => console.log(`Ошибка ${err}`))
-    closeAllPopups()
   }
 
   function handleUpdateAvatar(link) {
     api
       .setUserAvatar(link)
-      .then((item) => setCurrentUser(item))
+      .then((item) => {
+        setCurrentUser(item)
+        closeAllPopups()
+      })
       .catch((err) => console.log(`Ошибка ${err}`))
-    closeAllPopups()
   }
 
   function handleUpdateUser(data) {
     api
       .setUserInfo(data)
-      .then((userInfo) => setCurrentUser(userInfo))
+      .then((userInfo) => {
+        setCurrentUser(userInfo)
+        closeAllPopups()
+      })
       .catch((err) => console.log(`Ошибка ${err}`))
-    closeAllPopups()
   }
 
   useEffect(() => {
@@ -126,11 +136,7 @@ function App() {
             onClose={closeAllPopups}
             onAddPlace={addNewCard}
           />
-          <PopupWithForm
-            title={"Вы уверены"}
-            name={"delete"}
-            onClose={closeAllPopups}
-          ></PopupWithForm>
+          <PopupWithForm title={"Вы уверены"} name={"delete"} onClose={closeAllPopups} />
           <ImagePopup card={selectedCard} onClose={closeAllPopups} />
         </div>
       </div>

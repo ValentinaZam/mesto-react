@@ -2,7 +2,6 @@ import React, { useState, useRef } from "react"
 import PopupWithForm from "./PopupWithForm"
 
 function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
-  const [avatarImage] = useState("")
   const avatarRef = useRef(null)
 
   function handleSubmit(e) {
@@ -25,7 +24,6 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
         type="url"
         name="avatar"
         placeholder="Аватар"
-        defaultValue={avatarImage}
         required
         minLength="2"
         maxLength="200"

@@ -2,8 +2,6 @@ import React, { useState, useRef } from "react"
 import PopupWithForm from "./PopupWithForm"
 
 function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
-  const [name] = useState()
-  const [link] = useState()
   const cardNameRef = useRef(null)
   const cardLinkRef = useRef(null)
 
@@ -28,7 +26,6 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
         type="text"
         name="name"
         placeholder="Название"
-        defaultValue={name}
         required
         minLength="2"
         maxLength="30"
@@ -41,7 +38,6 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
         type="url"
         name="link"
         placeholder="Ссылка на картинку"
-        defaultValue={link}
         required
         ref={cardLinkRef}
       />

@@ -9,14 +9,8 @@ function PopupWithForm({ title, name, isOpen, onClose, onSubmit, ...props }) {
           type="button"
           aria-label="Закрыть"
           onClick={onClose}
-        ></button>
-        <form
-          className="popup__form popup__form_edit"
-          name={`form-${name}`}
-          method="get"
-          noValidate
-          onSubmit={onSubmit}
-        >
+        />
+        <form className="popup__form popup__form_edit" name={`form-${name}`} onSubmit={onSubmit}>
           <h2 className="popup__title">{title}</h2>
           {props.children}
           <button className="popup__submit popup__submit_edit" type="submit">
